@@ -1,0 +1,21 @@
+apiVersion: azure.crossplane.io/v1alpha3
+kind: ResourceGroup
+metadata:
+  name: devops-toolkit-20210211150451
+spec:
+  location: eastus
+
+---
+
+apiVersion: compute.azure.crossplane.io/v1alpha3
+kind: AKSCluster
+metadata:
+  name: devops-toolkit
+spec:
+  location: eastus
+  version: "1.19.7"
+  nodeVMSize: Standard_D2_v2
+  resourceGroupNameRef:
+    name: devops-toolkit-20210211150451
+  dnsNamePrefix: dt
+  nodeCount: 3
